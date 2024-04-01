@@ -9,12 +9,13 @@
         android:id="@+id/recycleForecastHourly"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:itemCount="5"
         android:orientation="vertical"
-        tools:listitem="@layout/item_forecast_hourly"/>
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:itemCount="5"
+        tools:listitem="@layout/item_forecast_hourly" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

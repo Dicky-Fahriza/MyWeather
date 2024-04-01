@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="400dp"
+    android:layout_height="450dp"
     android:paddingLeft="20dp"
     android:background="@color/black_transparent">
 
@@ -14,7 +14,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Text untuk lokasi -->
     <TextView
         android:id="@+id/currentCity"
         android:layout_width="wrap_content"
@@ -26,8 +25,8 @@
         app:layout_constraintTop_toBottomOf="@id/currentImageWeather"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- Linear Layout untuk suhu -->
     <LinearLayout
+        android:id="@+id/temperatureLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -35,7 +34,6 @@
         app:layout_constraintTop_toBottomOf="@id/currentCity"
         app:layout_constraintStart_toStartOf="parent">
 
-        <!-- Teks suhu -->
         <TextView
             android:id="@+id/currentTemp"
             android:layout_width="wrap_content"
@@ -45,7 +43,6 @@
             android:textStyle="bold"
             android:textColor="@color/white"/>
 
-        <!-- Teks derajat-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -55,25 +52,15 @@
             android:textColor="@color/white"/>
     </LinearLayout>
 
-    <View
-        android:id="@+id/stripe1"
-        android:layout_width="4dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="36dp"
-        android:background="@color/card1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/currentCity" />
-
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
+        android:id="@+id/pressureLayout"
+        android:layout_width="170dp"
+        android:layout_height="120dp"
         android:orientation="vertical"
         android:padding="8dp"
-        app:layout_constraintStart_toEndOf="@id/stripe1"
-        app:layout_constraintTop_toTopOf="@id/stripe1">
-
+        android:background="@drawable/box_menu"
+        app:layout_constraintStart_toStartOf="@id/temperatureLayout"
+        app:layout_constraintTop_toBottomOf="@id/temperatureLayout">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -107,26 +94,16 @@
         </LinearLayout>
     </LinearLayout>
 
-    <View
-        android:id="@+id/stripe2"
-        android:layout_width="4dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="6dp"
-        android:background="@color/card1"
-        app:layout_constraintEnd_toStartOf="@id/content2"
-        app:layout_constraintTop_toTopOf="@id/stripe1" />
-
     <LinearLayout
-        android:id="@+id/content2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="50dp"
+        android:id="@+id/windSpeedLayout"
+        android:layout_width="170dp"
+        android:layout_height="120dp"
         android:orientation="vertical"
         android:padding="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/stripe1">
-
+        android:layout_marginLeft="15dp"
+        android:background="@drawable/box_menu"
+        app:layout_constraintStart_toEndOf="@id/pressureLayout"
+        app:layout_constraintTop_toTopOf="@id/pressureLayout">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -145,7 +122,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="22"
+                android:text="1000"
                 android:textColor="@color/text"
                 android:textSize="28sp"
                 android:textStyle="bold" />
@@ -154,30 +131,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="4dp"
-                android:text="km/h"
+                android:text="m/s"
                 android:textColor="@color/text"
                 android:textSize="20sp" />
         </LinearLayout>
     </LinearLayout>
 
-    <View
-        android:id="@+id/stripe3"
-        android:layout_width="4dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="60dp"
-        android:background="@color/card1"
-        app:layout_constraintStart_toStartOf="@id/stripe1"
-        app:layout_constraintTop_toBottomOf="@id/stripe1" />
-
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
+        android:id="@+id/humidityLayout"
+        android:layout_width="170dp"
+        android:layout_height="120dp"
         android:orientation="vertical"
         android:padding="8dp"
-        app:layout_constraintStart_toEndOf="@id/stripe3"
-        app:layout_constraintTop_toTopOf="@id/stripe3">
-
+        android:layout_marginTop="8dp"
+        android:background="@drawable/box_menu"
+        app:layout_constraintStart_toStartOf="@id/pressureLayout"
+        app:layout_constraintTop_toBottomOf="@id/pressureLayout">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -196,9 +165,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="65"
+                android:text="1000"
                 android:textColor="@color/text"
-                android:textSize="32sp"
+                android:textSize="28sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -207,26 +176,22 @@
                 android:layout_marginLeft="4dp"
                 android:text="%"
                 android:textColor="@color/text"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
         </LinearLayout>
+
+
     </LinearLayout>
 
-    <View
-        android:id="@+id/stripe4"
-        android:layout_width="4dp"
-        android:layout_height="40dp"
-        android:background="@color/card1"
-        app:layout_constraintStart_toStartOf="@id/stripe2"
-        app:layout_constraintTop_toTopOf="@id/stripe3" />
-
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:id="@+id/feelsLikeLayout"
+        android:layout_width="170dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="15dp"
+        android:background="@drawable/box_menu"
         android:orientation="vertical"
         android:padding="8dp"
-        app:layout_constraintStart_toEndOf="@id/stripe4"
-        app:layout_constraintTop_toTopOf="@id/stripe4">
+        app:layout_constraintStart_toEndOf="@id/humidityLayout"
+        app:layout_constraintTop_toTopOf="@id/humidityLayout">
 
         <TextView
             android:layout_width="wrap_content"
@@ -246,20 +211,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="36,4"
+                android:text="1000"
                 android:textColor="@color/text"
-                android:textSize="32sp"
+                android:textSize="28sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="4dp"
-                android:text="C"
+                android:text="\u00B0"
                 android:textColor="@color/text"
                 android:textSize="20sp" />
         </LinearLayout>
-
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

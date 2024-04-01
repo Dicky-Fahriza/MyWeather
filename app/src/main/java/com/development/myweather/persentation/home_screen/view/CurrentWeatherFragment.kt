@@ -105,11 +105,6 @@ class CurrentWeatherFragment : BaseFragment<FragmentCurrentWeatherBinding>() {
         binding.currentWeather.currentHumidity.text = data.main.humidity.toString()
         binding.currentWeather.currentFeelsLike.text = data.main.feelsLike.toString()
 
-        // set image dengan string resource template
-        // val imageName = "weather${data.weather[0].icon}"
-        // val resourceId = resources.getIdentifier(imageName, "drawable", "com.dira.weatherapp")
-        // binding.currentWeather.currentImageWeather.setImageResource(resourceId)
-
         // load image dengan glide
         val imageCode = data.weather[0].icon
         Glide.with(this)
@@ -123,10 +118,6 @@ class CurrentWeatherFragment : BaseFragment<FragmentCurrentWeatherBinding>() {
         forecastHourlyAdapter = ForecastHourlyAdapter(data)
         binding.forecastHourly.recycleForecastHourly.adapter = forecastHourlyAdapter
 
-        // untuk setting orientasi recycle viewnya, bisa juga secara manual edit orientation di component recycleView
-        binding.forecastHourly.recycleForecastHourly.layoutManager = LinearLayoutManager(
-            binding.root.context, LinearLayoutManager.HORIZONTAL, false
-        )
         // menambahkan styling untuk setiap item recycleView
         binding.forecastHourly.recycleForecastHourly.apply {
             if (itemDecorationCount <= 0) {

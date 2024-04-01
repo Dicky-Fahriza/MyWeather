@@ -26,14 +26,14 @@
                 layout="@layout/component_current_weather"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"/>
+                android:layout_marginTop="8dp" />
 
             <include
                 android:id="@+id/forecastHourly"
                 layout="@layout/component_forecast_hourly"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"/>
+                android:layout_marginTop="50dp"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
