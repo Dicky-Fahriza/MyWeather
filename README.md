@@ -17,24 +17,17 @@
 
 ### Features
 
-- **Authentication**
-  - Login with the following predefined credentials:
-      - **Username:** user@gmail.com
-      - **Password:** user1234
-  - Register: Entered registration data will be displayed in the profile later.
+- **Splash Screen**
+  A splash screen typically displays the following elements: Logo or brands
 
-- **Home**
-  - Show popular and top-rated movies from The Movie DB API.
-  - Add search feature for searching movies by their titles.
+- **Current Weither**
+  Show current weither with location permission : temperature, pressure, wind speed, humidity and feels like.
 
-- **Movie Detail**
-  - Show overview, button to play trailer/teaser, list of actors, list of movie clips, and bookmark button.
+- **Forecast Hourly Current Weither**
+  Show forescast houry current weither with location permission
+  
 
-- **Bookmark**
-  - Show saved/bookmarked movies.
-
-- **Profile**
-  - Display data from registration.
+Logo or Branding
 
 - **Demo**
 
