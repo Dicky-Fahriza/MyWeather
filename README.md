@@ -13,7 +13,7 @@
 - Shared Preferences: Used for storing login, register, and profile data.
 
 ### API
-- Public API from [OpenWeather]((https://openweathermap.org/api)) 
+- Public API from [OpenWeather](https://openweathermap.org/api)
 
 ### Features
 
