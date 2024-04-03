@@ -49,7 +49,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="\u00B0"
+            android:text="\u00B0 C"
             android:textColor="@color/white"
             android:textSize="100sp"
             android:textStyle="bold" />
@@ -223,7 +223,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="4dp"
-                android:text="\u00B0"
+                android:text="\u00B0 C"
                 android:textColor="@color/text"
                 android:textSize="20sp" />
         </LinearLayout>

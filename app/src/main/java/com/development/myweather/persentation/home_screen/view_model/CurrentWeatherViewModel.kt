@@ -44,6 +44,8 @@ class CurrentWeatherViewModel @Inject constructor(
         }
     }
 
+
+
     // setter
     private val _forecastHourly = MutableLiveData<ForecastHourlyResponseModel>()
     private val _forecastHourlyError = MutableLiveData<String>()

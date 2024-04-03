@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:text="C"
                 android:textColor="@color/bg"
-                android:textSize="28sp"
+                android:textSize="20sp"
                 android:layout_marginStart="4dp"
                 android:fontFamily="sans-serif-condensed-light"/>
         </LinearLayout>

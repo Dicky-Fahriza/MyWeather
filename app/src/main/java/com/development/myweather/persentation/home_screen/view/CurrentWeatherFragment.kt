@@ -103,7 +103,7 @@ class CurrentWeatherFragment : BaseFragment<FragmentCurrentWeatherBinding>() {
         binding.currentWeather.currentPressure.text = data.main.pressure.toString()
         binding.currentWeather.currentWind.text = data.wind.speed.toString()
         binding.currentWeather.currentHumidity.text = data.main.humidity.toString()
-        binding.currentWeather.currentFeelsLike.text = data.main.feelsLike.toString()
+        binding.currentWeather.currentFeelsLike.text = data.main.feelsLike.toInt().toString()
 
         // load image dengan glide
         val imageCode = data.weather[0].icon
