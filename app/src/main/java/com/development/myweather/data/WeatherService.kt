@@ -2,6 +2,7 @@ package com.development.myweather.data
 
 import com.development.myweather.data.response_model.current.CurrentWeatherResponseModel
 import com.development.myweather.data.response_model.hourly.ForecastHourlyResponseModel
+import com.development.myweather.data.response_model.search.SearchWeatherResponseModel
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -24,5 +25,12 @@ interface WeatherService {
         @Query("appid") appId: String,
         @Query("units") units: String
     ): Response<ForecastHourlyResponseModel>
+
+    @GET("/data/2.5/weather")
+    suspend fun getSearchWeather(
+        @Query("q") city: String,
+        @Query("appid") appId: String,
+        @Query("units") units: String
+    ): Response<SearchWeatherResponseModel>
 
 }

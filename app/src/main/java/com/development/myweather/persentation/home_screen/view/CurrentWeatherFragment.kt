@@ -17,7 +17,8 @@ import com.development.myweather.data.response_model.hourly.ForecastDataHourly
 import com.development.myweather.databinding.FragmentCurrentWeatherBinding
 
 import com.development.myweather.persentation.home_screen.adapter.ForecastHourlyAdapter
-import com.development.myweather.persentation.home_screen.view_model.CurrentWeatherViewModel
+import com.development.myweather.persentation.home_screen.view_model.HomeViewModel
+import com.development.myweather.persentation.search_screen.view.SearchFragment
 
 import com.development.myweather.utils.HorizontalItemDecoration
 
@@ -30,7 +31,8 @@ import dagger.hilt.android.AndroidEntryPoint
 class CurrentWeatherFragment : BaseFragment<FragmentCurrentWeatherBinding>() {
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private val viewModel: CurrentWeatherViewModel by viewModels()
+
+    private val viewModel: HomeViewModel by viewModels()
 
     private lateinit var forecastHourlyAdapter: ForecastHourlyAdapter
 
@@ -48,6 +50,11 @@ class CurrentWeatherFragment : BaseFragment<FragmentCurrentWeatherBinding>() {
         // Initialize fused location client
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
 
+        // Check for location permission and get last location
+        getLastKnownLocation()
+    }
+
+    private fun getLastKnownLocation() {
         // Check for location permission
         if (ActivityCompat.checkSelfPermission(
                 requireContext(),
@@ -58,40 +65,29 @@ class CurrentWeatherFragment : BaseFragment<FragmentCurrentWeatherBinding>() {
             ) != PackageManager.PERMISSION_GRANTED
         ) {
             // Request location permission if not granted
-            ActivityCompat.requestPermissions(
-                requireActivity(),
-                arrayOf(
-                    Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.ACCESS_COARSE_LOCATION
-                ),
-                1
-            )
             return
-        }
-
-        // Get last location
-        fusedLocationClient.lastLocation
-            .addOnSuccessListener { location: Location? ->
-                // Got last known location. In some rare situations, this can be null.
-                location?.let {
-                    val latitude = it.latitude.toString()
-                    val longitude = it.longitude.toString()
-                    // use latitude and longitude in your API calls
-                    viewModel.getCurrentWeather(latitude, longitude)
-                    viewModel.getForecastHourly(latitude, longitude)
+        } else {
+            // permision alreagy granted, get last location
+            fusedLocationClient.lastLocation
+                .addOnSuccessListener { location: Location? ->
+                    // Got last known location. In some rare situations, this can be null.
+                    location?.let {
+                        val latitude = it.latitude.toString()
+                        val longitude = it.longitude.toString()
+                        // use latitude and longitude in your API calls
+                        viewModel.getCurrentWeather(latitude, longitude)
+                        viewModel.getForecastHourly(latitude, longitude)
+                        observeViewModel()
+                    }
                 }
-            }
-
-        observeViewModel()
-        handleClick()
+        }
     }
 
-
+    // mengambil data dari viewModel dan digunakan pada setUp view
     private fun observeViewModel() {
         viewModel.currentWeather.observe(viewLifecycleOwner) {it ->
             setUpCurrentWeatherView(it)
         }
-
         viewModel.forecastHourly.observe(viewLifecycleOwner) {it ->
             setUpViewForecastHourly(it.forecastDataList.subList(0, 8)) // sublist untuk slice list berdasarkan index
         }
@@ -103,7 +99,19 @@ class CurrentWeatherFragment : BaseFragment<FragmentCurrentWeatherBinding>() {
         binding.currentWeather.currentPressure.text = data.main.pressure.toString()
         binding.currentWeather.currentWind.text = data.wind.speed.toString()
         binding.currentWeather.currentHumidity.text = data.main.humidity.toString()
-        binding.currentWeather.currentFeelsLike.text = data.main.feelsLike.toInt().toString()
+        binding.currentWeather.currentFeelsLike.text = data.main.feelsLike.toString()
+
+        binding.header.plusIcon.setOnClickListener{
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainer, SearchFragment())
+                .addToBackStack(null) // tambahkan backstage agar bisa kembali ke fragment sebelumnya
+                .commit()
+        }
+
+        // set image dengan string resource template
+        // val imageName = "weather${data.weather[0].icon}"
+        // val resourceId = resources.getIdentifier(imageName, "drawable", "com.dira.weatherapp")
+        // binding.currentWeather.currentImageWeather.setImageResource(resourceId)
 
         // load image dengan glide
         val imageCode = data.weather[0].icon
@@ -115,30 +123,20 @@ class CurrentWeatherFragment : BaseFragment<FragmentCurrentWeatherBinding>() {
     }
 
     private fun setUpViewForecastHourly(data: List<ForecastDataHourly>) {
+
         forecastHourlyAdapter = ForecastHourlyAdapter(data)
         binding.forecastHourly.recycleForecastHourly.adapter = forecastHourlyAdapter
+
 
         // untuk setting orientasi recycle viewnya, bisa juga secara manual edit orientation di component recycleView
 //        binding.forecastHourly.recycleForecastHourly.layoutManager = LinearLayoutManager(
 //            binding.root.context, LinearLayoutManager.HORIZONTAL, false
 //        )
-
         // menambahkan styling untuk setiap item recycleView
         binding.forecastHourly.recycleForecastHourly.apply {
             if (itemDecorationCount <= 0) {
                 addItemDecoration(horizontalItemDecoration)
             }
-        }
-    }
-
-    private fun handleClick() {
-        binding.header.elipsisIcon.setOnClickListener {
-            val newFragment = SettingFragment()
-            // Lakukan transaksi fragment untuk menggantikan fragment saat ini dengan fragment baru
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fragmentContainer, newFragment)
-                .addToBackStack(null) // Tambahkan ke back stack agar dapat kembali ke fragment sebelumnya
-                .commit()
         }
     }
 

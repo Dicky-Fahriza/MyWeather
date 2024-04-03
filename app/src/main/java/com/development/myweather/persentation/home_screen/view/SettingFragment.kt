@@ -5,22 +5,13 @@ import com.development.myweather.persentation.home_screen.view_model.SettingView
 
 import android.Manifest
 import android.content.pm.PackageManager
-import android.location.Location
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
 import com.development.myweather.R
 
 import com.development.myweather.utils.BaseFragment
-import com.development.myweather.data.response_model.current.CurrentWeatherResponseModel
-import com.development.myweather.data.response_model.hourly.ForecastDataHourly
-import com.development.myweather.databinding.FragmentCurrentWeatherBinding
-
-import com.development.myweather.persentation.home_screen.adapter.ForecastHourlyAdapter
-import com.development.myweather.persentation.home_screen.view_model.CurrentWeatherViewModel
 
 import com.development.myweather.utils.HorizontalItemDecoration
 

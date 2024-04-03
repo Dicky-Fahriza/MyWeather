@@ -18,8 +18,12 @@ import javax.inject.Inject
 
 // @Inject: Ini adalah anotasi yang menandai konstruktor kelas HomeViewModel. Hilt akan memastikan bahwa instance dari CurrentWeatherRemote akan disediakan dan disuntikkan ke dalam konstruktor HomeViewModel saat membuat instance ViewModel.
 
+// @HiltViewModel: Ini adalah anotasi yang menandakan bahwa kelas HomeViewModel adalah ViewModel yang akan diinjeksikan oleh Hilt. Ketika Anda menggunakan @HiltViewModel, Anda tidak perlu lagi menyediakan ViewModelProvider.Factory karena Hilt secara otomatis akan menangani pembuatan instance ViewModel dan menyediakan dependencies yang diperlukan ke dalam konstruktor ViewModel.
+
+// @Inject: Ini adalah anotasi yang menandai konstruktor kelas HomeViewModel. Hilt akan memastikan bahwa instance dari CurrentWeatherRemote akan disediakan dan disuntikkan ke dalam konstruktor HomeViewModel saat membuat instance ViewModel.
+
 @HiltViewModel
-class CurrentWeatherViewModel @Inject constructor(
+class HomeViewModel @Inject constructor(
     private val currentWeatherRemote: CurrentWeatherRemote,
     private val forecastHourlyRemote: ForecastHourlyRemote
 ) :
@@ -28,7 +32,6 @@ class CurrentWeatherViewModel @Inject constructor(
     // setter
     private val _currentWeather = MutableLiveData<CurrentWeatherResponseModel>()
     private val _currentWeatherError = MutableLiveData<String>()
-
     // getter
     val currentWeather: LiveData<CurrentWeatherResponseModel> get() = _currentWeather
     val currentWeatherError: LiveData<String> get() = _currentWeatherError
@@ -44,12 +47,9 @@ class CurrentWeatherViewModel @Inject constructor(
         }
     }
 
-
-
     // setter
     private val _forecastHourly = MutableLiveData<ForecastHourlyResponseModel>()
     private val _forecastHourlyError = MutableLiveData<String>()
-
     // getter
     val forecastHourly: LiveData<ForecastHourlyResponseModel> get() = _forecastHourly
     val forecastHourlyError: LiveData<String> get() = _forecastHourlyError
