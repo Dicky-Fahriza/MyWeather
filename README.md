@@ -35,6 +35,8 @@ Logo or Branding
 
 - **Demo**
 
-https://github.com/fitrahmutiara0108/MovieBank/assets/81247727/196f9b88-1f05-48a4-837a-b9f3af6792c4
- 
+https://github.com/Dicky-Fahriza/MyWeather/assets/87850084/2391cf48-a978-45aa-929b-0f517bc5a315
+
+
+
  
