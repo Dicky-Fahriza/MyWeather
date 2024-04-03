@@ -26,6 +26,9 @@
 
 - **Forecast Hourly Current Weither**
   Show forescast houry current weither with location permission
+
+  - **Search**
+  Search for current weather by city
   
 
 Logo or Branding
