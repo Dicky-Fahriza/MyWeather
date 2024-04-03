@@ -1,4 +1,4 @@
-<h1 align="center">Movie Bank</h1>
+<h1 align="center">Weather App</h1>
 
 ## Tech Stack & Open-source Libraries
 
@@ -13,7 +13,7 @@
 - Shared Preferences: Used for storing login, register, and profile data.
 
 ### API
-- Public API from [The Movie DB](https://www.themoviedb.org/settings/api)
+- Public API from [OpenWeather]((https://openweathermap.org/api)) 
 
 ### Features
 
