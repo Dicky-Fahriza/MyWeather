@@ -5,7 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.development.myweather.data.remote.CurrentWeatherRemote
+import com.development.myweather.data.remote.ForecastHourlyRemote
 import com.development.myweather.data.response_model.current.CurrentWeatherResponseModel
+import com.development.myweather.data.response_model.hourly.ForecastHourlyResponseModel
 
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -17,7 +19,10 @@ import javax.inject.Inject
 // @Inject: Ini adalah anotasi yang menandai konstruktor kelas HomeViewModel. Hilt akan memastikan bahwa instance dari CurrentWeatherRemote akan disediakan dan disuntikkan ke dalam konstruktor HomeViewModel saat membuat instance ViewModel.
 
 @HiltViewModel
-class CurrentWeatherViewModel @Inject constructor(private val currentWeatherRemote: CurrentWeatherRemote) :
+class CurrentWeatherViewModel @Inject constructor(
+    private val currentWeatherRemote: CurrentWeatherRemote,
+    private val forecastHourlyRemote: ForecastHourlyRemote
+) :
     ViewModel() {
 
     // setter
@@ -36,6 +41,24 @@ class CurrentWeatherViewModel @Inject constructor(private val currentWeatherRemo
                 _currentWeatherError.postValue(it.message())
             }
 
+        }
+    }
+
+    // setter
+    private val _forecastHourly = MutableLiveData<ForecastHourlyResponseModel>()
+    private val _forecastHourlyError = MutableLiveData<String>()
+
+    // getter
+    val forecastHourly: LiveData<ForecastHourlyResponseModel> get() = _forecastHourly
+    val forecastHourlyError: LiveData<String> get() = _forecastHourlyError
+
+    fun getForecastHourly(lat: String, lon: String) = viewModelScope.launch(Dispatchers.IO) {
+        forecastHourlyRemote.getForecastHourly(lat, lon).let{
+            if (it.isSuccessful) {
+                _forecastHourly.postValue(it.body())
+            } else {
+                _forecastHourlyError.postValue(it.message())
+            }
         }
     }
 }

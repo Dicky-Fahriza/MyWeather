@@ -11,24 +11,23 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@HiltViewModel
-class ForecastHourlyViewModel @Inject constructor(private val forecastHourlyRemote: ForecastHourlyRemote) : ViewModel() {
-
-    // setter
-    private val _forecastHourly = MutableLiveData<ForecastHourlyResponseModel>()
-    private val _forecastHourlyError = MutableLiveData<String>()
-
-    // getter
-    val forecastHourly: LiveData<ForecastHourlyResponseModel> get() = _forecastHourly
-    val forecastHourlyError: LiveData<String> get() = _forecastHourlyError
-
-    fun getForecastHourly(lat: String, lon: String) = viewModelScope.launch(Dispatchers.IO) {
-        forecastHourlyRemote.getForecastHourly(lat, lon).let{
-            if (it.isSuccessful) {
-                _forecastHourly.postValue(it.body())
-            } else {
-                _forecastHourlyError.postValue(it.message())
-            }
-        }
-    }
-}
+//@HiltViewModel
+//class ForecastHourlyViewModel @Inject constructor(private val forecastHourlyRemote: ForecastHourlyRemote) : ViewModel() {
+//
+//    // setter
+//    private val _forecastHourly = MutableLiveData<ForecastHourlyResponseModel>()
+//    private val _forecastHourlyError = MutableLiveData<String>()
+//
+//    // getter
+//    val forecastHourly: LiveData<ForecastHourlyResponseModel> get() = _forecastHourly
+//    val forecastHourlyError: LiveData<String> get() = _forecastHourlyError
+//
+//    fun getForecastHourly(lat: String, lon: String) = viewModelScope.launch(Dispatchers.IO) {
+//        forecastHourlyRemote.getForecastHourly(lat, lon).let{
+//            if (it.isSuccessful) {
+//                _forecastHourly.postValue(it.body())
+//            } else {
+//                _forecastHourlyError.postValue(it.message())
+//            }
+//        }
+//    }

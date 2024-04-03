@@ -8,22 +8,25 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/currentImageWeather"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_width="40dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/currentCity"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/currentCity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Matraman, Jakarta Timur"
+        android:paddingTop="10dp"
         android:textSize="15sp"
         android:textStyle="bold"
         android:textColor="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/currentImageWeather"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" /> <!-- Mengubah start_toEndOf menjadi start_toStartOf -->
 
     <LinearLayout
         android:id="@+id/temperatureLayout"
@@ -39,7 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="26"
-            android:textSize="80sp"
+            android:textSize="100sp"
             android:textStyle="bold"
             android:textColor="@color/white"/>
 
@@ -47,9 +50,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="\u00B0"
-            android:textSize="80sp"
-            android:textStyle="bold"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:textSize="100sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout

@@ -18,7 +18,7 @@ import com.development.myweather.databinding.FragmentCurrentWeatherBinding
 
 import com.development.myweather.persentation.home_screen.adapter.ForecastHourlyAdapter
 import com.development.myweather.persentation.home_screen.view_model.CurrentWeatherViewModel
-import com.development.myweather.persentation.home_screen.view_model.ForecastHourlyViewModel
+
 import com.development.myweather.utils.HorizontalItemDecoration
 
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -30,8 +30,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class CurrentWeatherFragment : BaseFragment<FragmentCurrentWeatherBinding>() {
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private val viewModelCurrentWeather: CurrentWeatherViewModel by viewModels()
-    private val viewModelForecastHourly: ForecastHourlyViewModel by viewModels()
+    private val viewModel: CurrentWeatherViewModel by viewModels()
 
     private lateinit var forecastHourlyAdapter: ForecastHourlyAdapter
 
@@ -78,27 +77,28 @@ class CurrentWeatherFragment : BaseFragment<FragmentCurrentWeatherBinding>() {
                     val latitude = it.latitude.toString()
                     val longitude = it.longitude.toString()
                     // use latitude and longitude in your API calls
-                    viewModelCurrentWeather.getCurrentWeather(latitude, longitude)
-                    viewModelForecastHourly.getForecastHourly(latitude, longitude)
+                    viewModel.getCurrentWeather(latitude, longitude)
+                    viewModel.getForecastHourly(latitude, longitude)
                 }
             }
 
         observeViewModel()
+        handleClick()
     }
 
 
     private fun observeViewModel() {
-        viewModelCurrentWeather.currentWeather.observe(viewLifecycleOwner) {it ->
+        viewModel.currentWeather.observe(viewLifecycleOwner) {it ->
             setUpCurrentWeatherView(it)
         }
 
-        viewModelForecastHourly.forecastHourly.observe(viewLifecycleOwner) {it ->
+        viewModel.forecastHourly.observe(viewLifecycleOwner) {it ->
             setUpViewForecastHourly(it.forecastDataList.subList(0, 8)) // sublist untuk slice list berdasarkan index
         }
     }
 
     private fun setUpCurrentWeatherView(data: CurrentWeatherResponseModel) {
-        binding.currentWeather.currentTemp.text = data.main.temp.toString()
+        binding.currentWeather.currentTemp.text = data.main.temp.toInt().toString()
         binding.currentWeather.currentCity.text = data.name.toString()
         binding.currentWeather.currentPressure.text = data.main.pressure.toString()
         binding.currentWeather.currentWind.text = data.wind.speed.toString()
@@ -118,6 +118,11 @@ class CurrentWeatherFragment : BaseFragment<FragmentCurrentWeatherBinding>() {
         forecastHourlyAdapter = ForecastHourlyAdapter(data)
         binding.forecastHourly.recycleForecastHourly.adapter = forecastHourlyAdapter
 
+        // untuk setting orientasi recycle viewnya, bisa juga secara manual edit orientation di component recycleView
+//        binding.forecastHourly.recycleForecastHourly.layoutManager = LinearLayoutManager(
+//            binding.root.context, LinearLayoutManager.HORIZONTAL, false
+//        )
+
         // menambahkan styling untuk setiap item recycleView
         binding.forecastHourly.recycleForecastHourly.apply {
             if (itemDecorationCount <= 0) {
@@ -125,4 +130,16 @@ class CurrentWeatherFragment : BaseFragment<FragmentCurrentWeatherBinding>() {
             }
         }
     }
+
+    private fun handleClick() {
+        binding.header.elipsisIcon.setOnClickListener {
+            val newFragment = SettingFragment()
+            // Lakukan transaksi fragment untuk menggantikan fragment saat ini dengan fragment baru
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainer, newFragment)
+                .addToBackStack(null) // Tambahkan ke back stack agar dapat kembali ke fragment sebelumnya
+                .commit()
+        }
+    }
+
 }

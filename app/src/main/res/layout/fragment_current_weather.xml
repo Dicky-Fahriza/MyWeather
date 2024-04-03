@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <include
-                android:id="@+id/navbar"
+                android:id="@+id/header"
                 layout="@layout/component_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -34,6 +34,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"/>
+
+            <include
+                android:id="@+id/footer"
+                layout="@layout/component_footer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"/>
+                />
+
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

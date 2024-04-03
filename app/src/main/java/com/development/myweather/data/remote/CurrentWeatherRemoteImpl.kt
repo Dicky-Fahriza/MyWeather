@@ -11,6 +11,6 @@ class CurrentWeatherRemoteImpl @Inject constructor(val service: WeatherService) 
 
     // suspend -> Ketika fungsi suspend dipanggil, ia dapat menjalankan proses asinkron tanpa memblok thread secara langsung
     override suspend fun getCurrentWeather(lat: String, lon: String): Response<CurrentWeatherResponseModel> {
-        return service.getCurrentWeather(lat, lon, "7a4da524900d52b79f04e1e42cd05d39", "metric")
+        return service.getCurrentWeather(lat, lon, "6c95bd14e155cf70a1961ede160d7fd1", "metric")
     }
 }
