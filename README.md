@@ -7,10 +7,11 @@
 - Jetpack
     - Room: Used for storing saved/bookmarked movies.
     - ViewModel: Manages UI-related state and events, lifecycle-aware.
+- [Dagger]: Dagger is a Dependency Injection (DI) framework developed by Google
 - [Retrofit]: Constructs the REST APIs.
 - [Glide]: Image loading library for displaying network images.
-- [Android Youtube Player](https://github.com/PierfrancescoSoffritti/android-youtube-player): Used for showing trailers from each movie.
-- Shared Preferences: Used for storing login, register, and profile data.
+- [gms]: Google Mobile Services is a collection of services and APIs provided by Google for Android application development
+
 
 ### API
 - Public API from [OpenWeather](https://openweathermap.org/api)
